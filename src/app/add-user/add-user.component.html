@@ -1,0 +1,26 @@
+<div class="col-md-6">
+  <h2 class="text-center">Cadastrar Usuário</h2>
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">E-mail:</label>
+      <input type="email" formControlName="email" placeholder="Email" name="email" class="form-control" id="email">
+    </div>
+
+    <div class="form-group">
+      <label for="firstName">Nome completo:</label>
+      <input formControlName="nomeCompleto" placeholder="nomeCompleto" name="nomeCompleto" class="form-control" id="nomeCompleto">
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Endereço:</label>
+      <input formControlName="endereco" placeholder="Endereço" name="endereco" class="form-control" id="endereco">
+    </div>
+
+    <div class="form-group">
+        <label for="lastName">Matricula da Oab:</label>
+        <input formControlName="oab" placeholder="Matricula da OAB" name="oab" class="form-control" id="oab">
+      </div>
+
+    <button class="btn btn-success">Enviar cadastro</button>
+  </form>
+</div>
