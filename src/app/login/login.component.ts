@@ -35,8 +35,11 @@ export class LoginComponent implements OnInit {
       err => {
         this.router.navigate(['login']);
       },
-      // () => console.log('Observer got a complete notification')    
     );
+  }
+
+  cadastro(){
+    this.router.navigate(['add-user']);
   }
 
   ngOnInit() {
@@ -45,7 +48,4 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
     });
   }
-
-
-
 }

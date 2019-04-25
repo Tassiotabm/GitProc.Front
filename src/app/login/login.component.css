@@ -24,3 +24,13 @@
       color: white;
       padding: 15px;
     }
+
+    .center-margin{
+      margin-bottom: 15%;
+      margin-top: 15%;
+    }
+
+    p:hover { 
+      color: yellow;
+      cursor: pointer;
+    }
