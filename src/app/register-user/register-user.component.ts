@@ -7,9 +7,9 @@ import { Advogado } from '../model/user.model';
 import { registerLocaleData } from '@angular/common';
 
 @Component({
-  selector: 'app-registeruser',
-  templateUrl: './registeruser.component.html',
-  styleUrls: ['./registeruser.component.css']
+  selector: 'app-register-user',
+  templateUrl: './register-user.component.html',
+  styleUrls: ['./register-user.component.css']
 })
 export class RegisterUserComponent implements OnInit {
 

@@ -14,7 +14,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { HeaderComponent } from './main-page/header/header.component';
 import { MainContentComponent } from './main-page/main-content/main-content.component';
 import { FooterComponent } from './main-page/footer/footer.component';
-import { RegisterUserComponent } from './registeruser/registeruser.component';
+import { RegisterUserComponent } from './register-user/register-user.component';
 
 @NgModule({
   declarations: [
