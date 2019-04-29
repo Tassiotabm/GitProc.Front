@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
  
     this.authService.login(this.loginForm.controls.email.value,this.loginForm.controls.password.value).subscribe(
       x => {
-        this.router.navigate(['list-user']);
+        this.router.navigate(['main-page']);
       },
       err => {
         this.router.navigate(['login']);
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
   }
 
   cadastro(){
-    this.router.navigate(['add-user']);
+    this.router.navigate(['registeruser']);
   }
 
   ngOnInit() {

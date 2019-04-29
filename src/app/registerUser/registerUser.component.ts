@@ -7,11 +7,11 @@ import { Advogado } from '../model/user.model';
 import { registerLocaleData } from '@angular/common';
 
 @Component({
-  selector: 'app-add-user',
-  templateUrl: './add-user.component.html',
-  styleUrls: ['./add-user.component.css']
+  selector: 'app-registeruser',
+  templateUrl: './registeruser.component.html',
+  styleUrls: ['./registeruser.component.css']
 })
-export class AddUserComponent implements OnInit {
+export class RegisterUserComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService) { }
 
