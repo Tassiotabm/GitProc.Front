@@ -11,7 +11,6 @@ const routes: Routes = [
   { path: 'edit-user', component: EditUserComponent },
   { path: 'main-page', component: MainPageComponent },
   { path : '', component : LoginComponent }
-
 ];
 
 export const routing = RouterModule.forRoot(routes);
