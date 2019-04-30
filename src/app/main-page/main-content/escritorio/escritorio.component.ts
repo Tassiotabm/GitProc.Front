@@ -22,4 +22,8 @@ export class EscritorioComponent implements OnInit {
     });
   }
 
+
+  onSubmit(){
+    //to be added
+  }
 }
