@@ -6,7 +6,7 @@ import { EditUserComponent } from './main-page/main-content/edituser/edit-user.c
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'register-user', component: RegisterUserComponent },
+  { path: 'registeruser', component: RegisterUserComponent },
   { path: 'edit-user', component: EditUserComponent },
   { path: 'main-page', component: MainPageComponent },
   { path : '', component : LoginComponent }

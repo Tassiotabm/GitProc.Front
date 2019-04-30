@@ -13,7 +13,7 @@
   "dependencies": {
     "@angular/animations": "^6.0.2",
     "@angular/common": "^6.0.2",
-    "@angular/compiler": "^6.0.2",
+
     "@angular/core": "^6.0.2",
     "@angular/forms": "^6.0.2",
     "@angular/http": "^6.0.2",
@@ -49,3 +49,5 @@
     "typescript": "^3.2.2"
   }
 }
+    "@angular/compiler": "^6.0.2",
+

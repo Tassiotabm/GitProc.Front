@@ -1,0 +1,21 @@
+[0;1;31m●[0m nginx.service - A high performance web server and a reverse proxy server
+   Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
+  Drop-In: /etc/systemd/system/nginx.service.d
+           └─override.conf
+   Active: [0;1;31mfailed[0m (Result: exit-code) since Fri 2019-04-26 06:17:17 UTC; 52s ago
+  Process: 6219 ExecStop=/sbin/start-stop-daemon --quiet --stop --retry QUIT/5 --pidfile /run/nginx.pid (code=exited, status=0/SUCCESS)
+  Process: 1544 ExecStartPost=/bin/sleep 0.1 (code=exited, status=0/SUCCESS)
+  Process: 7350 ExecStart=/usr/sbin/nginx -g daemon on; master_process on; [0;1;31m(code=exited, status=1/FAILURE)[0m
+  Process: 7347 ExecStartPre=/usr/sbin/nginx -t -q -g daemon on; master_process on; (code=exited, status=0/SUCCESS)
+ Main PID: 1543 (code=exited, status=0/SUCCESS)
+
+Apr 26 06:17:16 projetos nginx[7350]: nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+Apr 26 06:17:16 projetos nginx[7350]: nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+Apr 26 06:17:16 projetos nginx[7350]: nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+Apr 26 06:17:17 projetos nginx[7350]: nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+Apr 26 06:17:17 projetos nginx[7350]: nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)
+Apr 26 06:17:17 projetos nginx[7350]: nginx: [emerg] still could not bind()
+Apr 26 06:17:17 projetos systemd[1]: [0;1;39mnginx.service: Control process exited, code=exited status=1[0m
+Apr 26 06:17:17 projetos systemd[1]: [0;1;31mFailed to start A high performance web server and a reverse proxy server.[0m
+Apr 26 06:17:17 projetos systemd[1]: [0;1;39mnginx.service: Unit entered failed state.[0m
+Apr 26 06:17:17 projetos systemd[1]: [0;1;39mnginx.service: Failed with result 'exit-code'.[0m
