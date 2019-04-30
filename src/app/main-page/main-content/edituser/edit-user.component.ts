@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "../service/user.service";
 import {Router} from "@angular/router";
-import {User} from "../model/user.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {first} from "rxjs/operators";
+import { User } from 'src/app/model/user.model';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -23,12 +22,12 @@ export class EditUserComponent implements OnInit {
     //   this.router.navigate(['list-user']);
     //   return;
     // }
-    // this.editForm = this.formBuilder.group({
-    //   id: [],
-    //   email: ['', Validators.required],
-    //   firstName: ['', Validators.required],
-    //   lastName: ['', Validators.required]
-    // });
+    this.editForm = this.formBuilder.group({
+      email: ['', Validators.required],
+      nomeCompleto: ['', Validators.required],
+      oab: ['', Validators.required],
+      endereco: ['', Validators.required]
+    });
     // this.userService.getUserById(+userId)
     //   .subscribe( data => {
     //     this.editForm.setValue(data);

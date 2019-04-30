@@ -7,7 +7,6 @@ import { routing } from "./app.routing";
 import { AuthenticationService } from "./service/auth.service";
 import { ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
-import { EditUserComponent } from './edituser/edit-user.component';
 import { UserService } from "./service/user.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainPageComponent } from './main-page/main-page.component';
@@ -15,6 +14,9 @@ import { HeaderComponent } from './main-page/header/header.component';
 import { MainContentComponent } from './main-page/main-content/main-content.component';
 import { FooterComponent } from './main-page/footer/footer.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
+import { ProcessosComponent } from './main-page/main-content/processos/processos.component';
+import { EditUserComponent } from './main-page/main-content/edituser/edit-user.component';
+import { EscritorioComponent } from './main-page/main-content/escritorio/escritorio.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { RegisterUserComponent } from './register-user/register-user.component';
     MainPageComponent,
     HeaderComponent,
     MainContentComponent,
-    FooterComponent
+    FooterComponent,
+    ProcessosComponent,
+    EscritorioComponent
   ],
   imports: [
     BrowserModule,
