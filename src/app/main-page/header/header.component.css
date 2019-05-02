@@ -1,3 +1,8 @@
 .options{
     width: -webkit-fill-available;
 }
+
+.header{
+    flex-wrap: inherit;
+    width: 100%; color : white;  text-align: center;
+}

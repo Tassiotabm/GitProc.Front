@@ -1,0 +1,8 @@
+.main-page{
+}
+
+@media (max-width: 767px) {
+    .main-page{
+        min-height: 85vh;
+    }
+}

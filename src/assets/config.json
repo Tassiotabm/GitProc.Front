@@ -1,4 +1,5 @@
 {
-    "baseUrl": "http://157.230.14.32:5000/api/",
-    "textfile": "assets/textfile.txt"
-  }
+  "baseUrl": "http://157.230.14.32:5000/api/",
+  "textfile": "assets/textfile.txt",
+  "local": "localhost/"
+}

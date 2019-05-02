@@ -24,7 +24,8 @@ export class RegisterUserComponent implements OnInit {
       email: ['', Validators.required],
       nomeCompleto: ['', Validators.required],
       oab: ['', Validators.required],
-      endereco: ['', Validators.required]
+      endereco: ['', Validators.required],
+      senha: ['', Validators.required]
     });
   }
 
@@ -33,7 +34,7 @@ export class RegisterUserComponent implements OnInit {
     this.register.Login = this.addForm.get('email').value;
     this.register.OAB = this.addForm.get('oab').value;
     this.register.Name = this.addForm.get('nomeCompleto').value;
-    this.register.Password = "senha";
+    this.register.Password = this.addForm.get('senha').value;
   }
 
   save() {

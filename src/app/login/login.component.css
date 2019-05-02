@@ -34,3 +34,9 @@
       color: yellow;
       cursor: pointer;
     }
+
+    @media (max-width: 767px) {
+      .center-margin{
+        margin-top: 25%;
+      }
+  }
