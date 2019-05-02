@@ -29,7 +29,8 @@ export class LoginComponent implements OnInit {
     }
  
     this.authService.login(this.loginForm.controls.email.value,this.loginForm.controls.password.value).subscribe(
-      x => {
+      value => {
+        localStorage.setItem(value, 'UserId');
         this.router.navigate(['main-page']);
       },
       err => {

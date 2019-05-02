@@ -1,22 +1,20 @@
-<div class="col-md-6">
-    <h2 class="text-center">Edit Escritorio</h2>
-    <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="email">Email address:</label>
-        <input type="email" formControlName="email" placeholder="Email" name="email" class="form-control" id="email">
-      </div>
-  
-      <div class="form-group">
-        <label for="firstName">Nome Completo</label>
-        <input formControlName="nomeCompleto" placeholder="First Name" name="firstName" class="form-control" id="nomeCompleto">
-      </div>
-  
-      <div class="form-group">
-        <label for="lastName">oab:</label>
-        <input formControlName="oab" placeholder="Last name" name="lastName" class="form-control" id="lastName">
-      </div>
-      <button class="btn btn-success">Update</button>
-  
-    </form>
-  </div>
-  
+<div class="center-text">
+  <h2 class="text-center">Edit Escritorio</h2>
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="firstName">Nome Escritorio</label>
+      <input formControlName="nomeCompleto" placeholder="First Name" name="firstName" class="form-control"
+        id="nomeCompleto">
+    </div>
+    <div class="form-group">
+      <label for="email">Endereco:</label>
+      <input type="email" formControlName="email" placeholder="Email" name="email" class="form-control" id="email">
+    </div>
+    <div class="form-group">
+      <label for="lastName">CNPJ:</label>
+      <input formControlName="oab" placeholder="Last name" name="lastName" class="form-control" id="lastName">
+    </div>
+    <button class="btn btn-success">Update</button>
+
+  </form>
+</div>

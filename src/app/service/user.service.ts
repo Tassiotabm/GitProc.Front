@@ -19,4 +19,7 @@ export class UserService {
     return this.http.post<any>(this.baseUrl + 'Login/CreateUser', Advogado);
   }
 
+  getUser(userId : string) : Observable<any>{
+    return this.http.get<any>(this.baseUrl + 'Advogado?userid='+userId);
+  }
 }
