@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
  
     this.authService.login(this.loginForm.controls.email.value,this.loginForm.controls.password.value).subscribe(
       value => {
-        localStorage.setItem(value, 'UserId');
+        localStorage.setItem('UserId' ,value);
         this.router.navigate(['main-page']);
       },
       err => {

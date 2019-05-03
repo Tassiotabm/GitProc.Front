@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   
   @Output() changePanel = new EventEmitter<any>();
-
+  @Input() userData: any;
+  
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -22,4 +24,5 @@ export class HeaderComponent implements OnInit {
   changeComponent(component: string) {
     this.changePanel.emit(component);
   }
+
 }

@@ -1,0 +1,8 @@
+@media (max-width: 767px) {
+    .modal-content {
+        margin: 50% 0% 0% 3% !important;
+        position: absolute !important;
+        width: 90%;
+    }
+}
+

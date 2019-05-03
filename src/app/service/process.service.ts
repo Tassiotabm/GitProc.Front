@@ -4,7 +4,7 @@ import { User, Advogado } from "../model/user.model";
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class UserService {
+export class ProcessService {
 
   baseUrl = 'http://localhost:5000/api/'
   //baseUrl = 'http://157.230.14.32:5000/api/'
@@ -16,12 +16,12 @@ export class UserService {
   };
   constructor(private http: HttpClient) { }
 
-  createUser(Advogado : Advogado) : Observable<any>{
-    return this.http.post<any>(this.baseUrl + 'Login/CreateUser', Advogado);
+  createProcess(processId: string): Observable<any> {
+    return this.http.post<any>(this.baseUrl + 'Processo/', 
+      { IdProcesso: processId, UserId: localStorage.getItem('UserId') });
   }
 
-  getUser() : Observable<any>{
-
-    return this.http.get<any>(this.baseUrl + 'Advogado/'+localStorage.getItem('UserId') );
+  getProcess(userId: string): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'Processo/' +userId);
   }
 }

@@ -5,9 +5,8 @@ import { Observable } from 'rxjs/internal/Observable';
 @Injectable()
 export class AuthenticationService {
 
-  baseUrl = 'http://157.230.14.32:5000/api/'
-  //baseUrl = 'http://localhost:5000/api/'
-  configUrl = 'assets/config.json';
+  //baseUrl = 'http://157.230.14.32:5000/api/'
+  baseUrl = 'http://localhost:5000/api/'  
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MainContentComponent } from './main-content/main-content.component';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-main-page',
@@ -10,12 +11,20 @@ export class MainPageComponent implements OnInit {
 
   @ViewChild(MainContentComponent)
   private mainComponenet: MainContentComponent;
+  public userData;
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.getUserInfo();
   }
 
+  getUserInfo() {
+    this.userService.getUser()
+      .subscribe(data => {
+        this.userData = data;
+      });
+  }
 
   changePanel(component: any) {
     switch (component) {

@@ -4,7 +4,7 @@
     <div class="card" style="margin-top: 3%;">
       <div class="card-body">
         <h5 class="card-title">Processos Cadastrados</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <p class="card-text">Processos cadastrado pelo Usuário.</p>
 
         <div class="list-group">
           <!-- active class no bootstrap na lista! -->
@@ -19,7 +19,7 @@
             </a>
           </div>
         </div>
-        <a href="#!" class="btn btn-primary">Adicionar Processo</a>
+        <a class="btn btn-primary" style="margin-top: 2%;" (click)="openModal(template)">Adicionar Processo</a>
       </div>
     </div>
   </div>
@@ -42,8 +42,46 @@
             </a>
           </div>
         </div>
-        <a href="#!" class="btn btn-primary">Seguir Processos</a>
+        <a class="btn btn-primary" style="margin-top: 2%;" data-toggle="modal">Seguir Processos</a>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Modal -->
+<ng-template #template>
+
+  <div class="modal-content " id="modal">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Adicionar processo</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="processForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+          <label for="lastName">Numero do Processo:</label>
+          <input formControlName="processo" placeholder="Ex: 0187864-53.2012.8.19.0004" name="processo"
+            class="form-control" id="processo">
+        </div>
+        <button class="btn btn-success">Adicionar</button>
+      </form>
+      <div class="alert alert-success alert-dismissible" style="margin-top: 1%" [hidden]="sucesso">
+        <strong>Success!</strong> Processo Salvo com sucesso!
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+      </div>
+      <!-- Error Alert -->
+      <div class="alert alert-danger alert-dismissible" style="margin-top: 1%" [hidden]="erro">
+        <strong>Error!</strong> Erro ao Salvar o processo!
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModal()">Close</button>
+    </div>
+
+  </div>
+
+</ng-template>
