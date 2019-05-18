@@ -36,7 +36,7 @@ export class EscritorioComponent implements OnInit {
   }
 
   loadEscritorio() {
-    this.escritorio.EscritorioId = this.escritorioDataInput.escritorioId;
+    this.escritorio.EscritorioId = this.escritorioDataInput? this.escritorioDataInput.escritorioId : null;
     this.escritorio.CNPJ = this.editForm.get('cnpj').value;
     this.escritorio.Endereco = this.editForm.get('endereco').value;
     this.escritorio.Name = this.editForm.get('nomeCompleto').value;
