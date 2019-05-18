@@ -7,14 +7,18 @@
         id="nomeCompleto">
     </div>
     <div class="form-group">
-      <label for="email">Endereco:</label>
-      <input type="email" formControlName="email" placeholder="Email" name="email" class="form-control" id="email">
+      <label for="endereco">Endereco:</label>
+      <input formControlName="endereco" placeholder="endereco" name="endereco" class="form-control" id="endereco">
     </div>
     <div class="form-group">
-      <label for="lastName">CNPJ:</label>
-      <input formControlName="oab" placeholder="Last name" name="lastName" class="form-control" id="lastName">
+      <label for="cnpj">CNPJ:</label>
+      <input formControlName="cnpj" placeholder="cnpj" name="cnpj" class="form-control" id="cnpj">
     </div>
-    <button class="btn btn-success">Update</button>
-
+    <button style="margin-bottom: 1vh;" class="btn btn-success">Update</button>
+    <div class="alert alert-success" role="alert" [hidden]="!sucesso">
+      <h4 class="alert-heading">Muito bem!</h4>
+      <p>Escritorio editado com sucesso!</p>
+      <hr>
+    </div>
   </form>
 </div>

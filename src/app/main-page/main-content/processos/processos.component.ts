@@ -13,6 +13,7 @@ import { ProcessService } from 'src/app/service/process.service';
 export class ProcessosComponent implements OnInit {
 
   processos: any[];
+  processosAdvogado:  any[];
   modalRef: BsModalRef;
   showModal: boolean = true;
   processForm: FormGroup;
@@ -62,7 +63,7 @@ export class ProcessosComponent implements OnInit {
   getProcess(){
     this.processService.getProcess(localStorage.getItem('UserId')).subscribe(
       value => {
-        console.log(value)
+        this.processosAdvogado = value;
       },
       err => {
       },
@@ -78,7 +79,6 @@ export class ProcessosComponent implements OnInit {
   }
 
   onSubmit() {
-
     this.sucesso = true;
     this.erro = true;
 

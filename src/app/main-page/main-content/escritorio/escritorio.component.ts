@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { UserService } from 'src/app/service/user.service';
+import { Escritorio } from 'src/app/model/escritorio.model';
 
 @Component({
   selector: 'app-escritorio',
@@ -8,22 +10,47 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 })
 export class EscritorioComponent implements OnInit {
 
-
+  @Input() escritorioDataInput: any;
   editForm: FormGroup;
-  constructor(private formBuilder: FormBuilder) { }
-
-
-  ngOnInit() {
+  sucesso: boolean = null;
+  escritorio: Escritorio = new Escritorio(null,null,null,null);
+  constructor(private formBuilder: FormBuilder, private userService: UserService) { 
     this.editForm = this.formBuilder.group({
-      email: ['', Validators.required],
       nomeCompleto: ['', Validators.required],
-      oab: ['', Validators.required],
+      cnpj: ['', Validators.required],
       endereco: ['', Validators.required]
     });
   }
 
+  ngOnInit() { }
+
+  ngOnChanges(changes: SimpleChanges){
+
+    if(changes.escritorioDataInput){
+      this.editForm.setValue({
+        'cnpj' : this.escritorioDataInput ? this.escritorioDataInput.cnpj : "teste21212" ,
+        'endereco' : this.escritorioDataInput ? this.escritorioDataInput.endereco : "" ,
+        'nomeCompleto' : this.escritorioDataInput ? this.escritorioDataInput.name : "" ,
+      });
+    }
+  }
+
+  loadEscritorio() {
+    this.escritorio.EscritorioId = this.escritorioDataInput.escritorioId;
+    this.escritorio.CNPJ = this.editForm.get('cnpj').value;
+    this.escritorio.Endereco = this.editForm.get('endereco').value;
+    this.escritorio.Name = this.editForm.get('nomeCompleto').value;
+  }
 
   onSubmit(){
-    //to be added
+    this.loadEscritorio();
+    this.userService.saveEscritorio(this.escritorio).subscribe(
+      value => {
+        this.sucesso = true;
+      },
+      err => {
+        this.sucesso = false;
+      },
+    );
   }
 }

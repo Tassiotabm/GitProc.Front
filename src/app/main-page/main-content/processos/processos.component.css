@@ -6,3 +6,7 @@
     }
 }
 
+.overflow-processo{
+    overflow-y: scroll;
+    max-height:  50vh;
+}

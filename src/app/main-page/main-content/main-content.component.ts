@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -11,6 +11,8 @@ export class MainContentComponent implements OnInit {
   public page1: boolean = false;
   public page2: boolean = true;
   public page3: boolean = true;
+
+  @Input() escritorioDataInput;
 
   constructor( ) { 
     this.page2 = true;

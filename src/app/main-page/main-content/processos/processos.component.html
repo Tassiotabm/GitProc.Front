@@ -6,16 +6,16 @@
         <h5 class="card-title">Processos Cadastrados</h5>
         <p class="card-text">Processos cadastrado pelo Usuário.</p>
 
-        <div class="list-group">
+        <div class="list-group overflow-processo">
           <!-- active class no bootstrap na lista! -->
-          <div *ngFor="let proc of processos; index as i;">
-            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div *ngFor="let proc of processosAdvogado; index as i;">
+            <a class="list-group-item list-group-item-action flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">Processo No {{proc.number}}</h5>
-                <small>{{proc.smallDate}}</small>
+                <h5 class="mb-1">Processo No {{proc?.numero}}</h5>
+                <small>{{proc?.smallDate}}</small>
               </div>
-              <p class="mb-1">{{proc.smallInfo}}</p>
-              <small>Comarca : {{proc.comarca}}</small>
+              <p class="mb-1">{{proc?.smallInfo}}</p>
+              <small>Comarca : {{proc?.comarca}}</small>
             </a>
           </div>
         </div>
@@ -32,7 +32,7 @@
         <div class="list-group">
           <!-- active class no bootstrap na lista! -->
           <div *ngFor="let proc of processos; index as i;">
-            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <a class="list-group-item list-group-item-action flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">Processo No {{proc.number}}</h5>
                 <small>{{proc.smallDate}}</small>
@@ -64,6 +64,11 @@
         <div class="form-group">
           <label for="lastName">Numero do Processo:</label>
           <input formControlName="processo" placeholder="Ex: 0187864-53.2012.8.19.0004" name="processo"
+            class="form-control" id="processo">
+        </div>
+        <div class="form-group">
+          <label for="lastName">Nick do Processo:</label>
+          <input formControlName="processo" placeholder="Ex:Projeto da Petobras" name="processo"
             class="form-control" id="processo">
         </div>
         <button class="btn btn-success">Adicionar</button>
