@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
       },
       err => {
         this.router.navigate(['login']);
+        this.invalidLogin = true;
       },
     );
   }

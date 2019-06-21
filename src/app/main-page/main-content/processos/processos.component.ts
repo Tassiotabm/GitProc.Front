@@ -12,13 +12,15 @@ import { ProcessService } from 'src/app/service/process.service';
 })
 export class ProcessosComponent implements OnInit {
 
-  processos: any[];
+  processosEscritorio: any[];
   processosAdvogado:  any[];
   modalRef: BsModalRef;
+  modalRefProcss: BsModalRef;
   showModal: boolean = true;
   processForm: FormGroup;
   sucesso: boolean = true;
   erro: boolean = true;
+  erroMessage: string;
 
   constructor(private modalService: BsModalService,
     private formBuilder: FormBuilder, private processService: ProcessService) { }
@@ -30,34 +32,7 @@ export class ProcessosComponent implements OnInit {
     });
 
     this.getProcess();
-
-    //mock
-    this.processos = [
-      {
-        'number': '0006042-25.2012.8.19.0007',
-        'smallInfo': '	processamento meta 2 32',
-        'comarca': '	Cartório da 2ª Vara Cível',
-        'smallDate': '2 meses atras',
-      },
-      {
-        'number': '0002470-26.2011.8.19.0030',
-        'smallInfo': 'Procedimento Sumário (CADASTRO OU CONVOLAÇÃO ATÉ 17.03.2016)',
-        'comarca': 'Cartório da Vara Única',
-        'smallDate': '4 meses atras',
-      },
-      {
-        'number': '0271903-60.2010.8.19.0001',
-        'smallInfo': 'Em fase de encaminhamento ao arquivo',
-        'comarca': 'Central de Arquivamento do 1º Núcleo Regional',
-        'smallDate': '1 mes atras',
-      },
-      {
-        'number': '0103847-61.2010.8.19.0002',
-        'smallInfo': '	Aguardando Movimentação',
-        'comarca': 'Central de Arquivamento -Nur 2',
-        'smallDate': '2 anos atras',
-      }
-    ]
+  
   }
 
   getProcess(){
@@ -68,6 +43,21 @@ export class ProcessosComponent implements OnInit {
       err => {
       },
     );
+    this.processService.getProcessEscritorio(localStorage.getItem('UserId')).subscribe(
+      value => {
+        this.processosEscritorio = value;
+      },
+      err => {
+      },
+    );
+  }
+
+  openModalProcess(template: TemplateRef<any>,procData) {
+    this.modalRefProcss = this.modalService.show(template, { backdrop: 'static', keyboard: false });
+  }
+
+  closeModalProcess(){
+    this.modalRefProcss.hide();
   }
 
   openModal(template: TemplateRef<any>) {
@@ -91,6 +81,7 @@ export class ProcessosComponent implements OnInit {
         this.sucesso = false;
       },
       err => {
+        this.erroMessage = err.error.Message;
         this.erro = false;
       },
     );

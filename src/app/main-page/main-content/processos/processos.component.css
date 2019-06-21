@@ -9,4 +9,9 @@
 .overflow-processo{
     overflow-y: scroll;
     max-height:  50vh;
+    height: 50vh;
+}
+
+.card{
+    margin-bottom: 3%
 }
