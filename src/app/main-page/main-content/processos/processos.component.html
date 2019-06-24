@@ -12,10 +12,10 @@
             <a class="list-group-item list-group-item-action flex-column align-items-start" (click)="openModalProcess(templateProc,proc)">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">Processo No {{proc?.numero}}</h5>
-                <small>{{proc?.smallDate}}</small>
+                <small>{{proc.processoMaster.updatedDay}}</small>
               </div>
-              <p class="mb-1">{{proc?.smallInfo}}</p>
-              <small>Comarca : {{proc?.comarca}}</small>
+              <p class="mb-1">{{proc.processoMaster.assunto}}</p>
+              <small>Comarca : {{proc.processoMaster.comarca}}</small>
             </a>
           </div>
         </div>
@@ -34,11 +34,11 @@
           <div *ngFor="let proc of processosEscritorio; index as i;">
             <a class="list-group-item list-group-item-action flex-column align-items-start" (click)="openModalProcess(templateProc,proc)">
               <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">Processo No {{proc.number}}</h5>
-                <small>{{proc.smallDate}}</small>
+                <h5 class="mb-1">No {{proc.numero}}</h5>
+                <small>{{proc.processoMaster.updatedDay}}</small>
               </div>
-              <p class="mb-1">{{proc.smallInfo}}</p>
-              <small>Comarca : {{proc.comarca}}</small>
+              <p class="mb-1">{{proc.processoMaster.assunto}}</p>
+              <small>Comarca : {{proc.processoMaster.comarca}}</small>
             </a>
           </div>
         </div>
@@ -68,8 +68,8 @@
         </div>
         <div class="form-group">
           <label for="lastName">Nick do Processo:</label>
-          <input formControlName="processo" placeholder="Ex:Projeto da Petobras" name="processo"
-            class="form-control" id="processo">
+          <input formControlName="nick" placeholder="Ex:Projeto da Petobras" name="processo"
+            class="form-control" id="nick">
         </div>
         <button class="btn btn-success">Adicionar</button>
       </form>

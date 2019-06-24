@@ -13,7 +13,7 @@ import { ProcessService } from 'src/app/service/process.service';
 export class ProcessosComponent implements OnInit {
 
   processosEscritorio: any[];
-  processosAdvogado:  any[];
+  processosAdvogado: any[];
   modalRef: BsModalRef;
   modalRefProcss: BsModalRef;
   showModal: boolean = true;
@@ -28,14 +28,20 @@ export class ProcessosComponent implements OnInit {
   ngOnInit() {
 
     this.processForm = this.formBuilder.group({
-      processo: ['', Validators.required],
+      nick: ['', Validators.required],
+      processo: ['', Validators.required, this.noWhitespaceValidator],
     });
 
     this.getProcess();
-  
+
   }
 
-  getProcess(){
+  noWhitespaceValidator(control: FormGroup) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true };
+  }
+  getProcess() {
     this.processService.getProcess(localStorage.getItem('UserId')).subscribe(
       value => {
         this.processosAdvogado = value;
@@ -52,20 +58,23 @@ export class ProcessosComponent implements OnInit {
     );
   }
 
-  openModalProcess(template: TemplateRef<any>,procData) {
+  openModalProcess(template: TemplateRef<any>, procData) {
     this.modalRefProcss = this.modalService.show(template, { backdrop: 'static', keyboard: false });
   }
 
-  closeModalProcess(){
+  closeModalProcess() {
+    this.erro = true;
     this.modalRefProcss.hide();
+    this.getProcess();
   }
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, { backdrop: 'static', keyboard: false });
   }
 
-  closeModal(){
+  closeModal() {
     this.modalRef.hide();
+    this.getProcess();
   }
 
   onSubmit() {
@@ -75,8 +84,8 @@ export class ProcessosComponent implements OnInit {
     if (this.processForm.invalid) {
       return;
     }
- 
-    this.processService.createProcess(this.processForm.controls.processo.value).subscribe(
+
+    this.processService.createProcess(this.processForm.controls.processo.value, this.processForm.controls.nick.value).subscribe(
       value => {
         this.sucesso = false;
       },

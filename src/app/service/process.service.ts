@@ -16,9 +16,9 @@ export class ProcessService {
   };
   constructor(private http: HttpClient) { }
 
-  createProcess(processId: string): Observable<any> {
+  createProcess(processId: string,nick: string): Observable<any> {
     return this.http.post<any>(this.baseUrl + 'Processo/', 
-      { IdProcesso: processId, UserId: localStorage.getItem('UserId') });
+      { IdProcesso: processId, UserId: localStorage.getItem('UserId'), nick: nick });
   }
 
   getProcess(userId: string): Observable<any> {
