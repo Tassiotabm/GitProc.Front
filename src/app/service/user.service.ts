@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class UserService {
 
-  baseUrl = 'http://localhost:5000/api/'
-  //baseUrl = 'http://157.230.14.32:5000/api/'
+  //baseUrl = 'http://localhost:5000/api/'
+  baseUrl = 'http://157.230.14.32:5000/api/'
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
