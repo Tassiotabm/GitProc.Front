@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class ProcessService {
 
-  //baseUrl = 'http://localhost:5000/api/'
-  baseUrl = 'http://157.230.14.32:5000/api/'
+  baseUrl = 'http://localhost:5000/api/'
+  //baseUrl = 'http://157.230.14.32:5000/api/'
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -31,5 +31,9 @@ export class ProcessService {
 
   getProcessMasterData(processId:string ):  Observable<any> {
     return this.http.get<any>(this.baseUrl + 'ProcessoMaster/' + processId);
+  }
+
+  getMovimentos(processMasterId: string):  Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'Processo/Movimentos/' + processMasterId);
   }
 }

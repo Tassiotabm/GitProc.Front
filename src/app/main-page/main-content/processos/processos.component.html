@@ -9,7 +9,8 @@
         <div class="list-group overflow-processo">
           <!-- active class no bootstrap na lista! -->
           <div *ngFor="let proc of processosAdvogado; index as i;">
-            <a class="list-group-item list-group-item-action flex-column align-items-start" (click)="openModalProcess(templateProc,proc)">
+            <a class="list-group-item list-group-item-action flex-column align-items-start"
+              (click)="openModalProcess(templateProc,proc)">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">Processo No {{proc?.numero}}</h5>
                 <small>{{proc.processoMaster.updatedDay}}</small>
@@ -32,7 +33,8 @@
         <div class="list-group overflow-processo">
           <!-- active class no bootstrap na lista! -->
           <div *ngFor="let proc of processosEscritorio; index as i;">
-            <a class="list-group-item list-group-item-action flex-column align-items-start" (click)="openModalProcess(templateProc,proc)">
+            <a class="list-group-item list-group-item-action flex-column align-items-start"
+              (click)="openModalProcess(templateProc,proc)">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">No {{proc.numero}}</h5>
                 <small>{{proc.processoMaster.updatedDay}}</small>
@@ -68,8 +70,8 @@
         </div>
         <div class="form-group">
           <label for="lastName">Nick do Processo:</label>
-          <input formControlName="nick" placeholder="Ex:Projeto da Petobras" name="processo"
-            class="form-control" id="nick">
+          <input formControlName="nick" placeholder="Ex:Projeto da Petobras" name="processo" class="form-control"
+            id="nick">
         </div>
         <button class="btn btn-success">Adicionar</button>
       </form>
@@ -94,55 +96,48 @@
 <!-- modal click process -->
 <ng-template #templateProc>
 
-  <div class="modal-content " id="modal">
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">Dados do processo</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="closeModalProcess()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <form [formGroup]="processForm">
-
-        <div id="accordion">
-          <div class="card">
-            <div class="card-header" id="headingOne">
-              <h5 class="mb-0">
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Processo Master
-                </button>
-              </h5>
-            </div>
-        
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-              <div class="card-body">
-                Dados do Processo
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header" id="headingTwo">
-              <h5 class="mb-0">
-                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  Collapsible Group Item #2
-                </button>
-              </h5>
-            </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-              <div class="card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-              </div>
-            </div>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Dados do processo</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="closeModalProcess()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table class="table table-sm">
+      <thead>
+      </thead>
+      <tbody>
+        <div>
+          <tr *ngFor="let proc of detalhe; index as i;">
+            <th scope="row">{{proc.titulo}}</th>
+            <td>{{proc.info}}</td>
+          </tr>
+        </div>
+        <a class="btn btn-primary" data-toggle="collapse" href="#movimento" role="button" aria-expanded="false"
+          aria-controls="movimento">Mostrar Movimento</a>
+        <a class="btn btn-success" data-toggle="collapse" href="#historico" role="button" aria-expanded="false"
+          aria-controls="historico">Mostrar Historico</a>
+        <div class="collapse" id="movimento">
+          <div *ngIf="showMovimentos" class="card card-body">
+            <tr *ngFor="let proc of movimento; index as i;">
+              <th scope="row">{{proc.titulo}} </th>
+              <td>{{proc.info}}</td>
+            </tr>
           </div>
         </div>
-
-
-      </form>      
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModalProcess()">Close</button>
-    </div>
-
+        <div class="collapse" id="historico">
+          <div *ngIf="showMovimentos" class="card card-body">
+            <tr>
+              <th scope="row">DADOS DO PROCESSO </th>
+              <td>DADOS DO PROCESSO</td>
+            </tr>
+          </div>
+        </div>
+      </tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeModalProcess()">Close</button>
   </div>
 
 </ng-template>
