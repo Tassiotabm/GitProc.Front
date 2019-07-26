@@ -16,9 +16,18 @@ export class ProcessService {
   };
   constructor(private http: HttpClient) { }
 
-  createProcess(processId: string,nick: string): Observable<any> {
+  createProcessMaster(processId: string,nick: string): Observable<any> {
     return this.http.post<any>(this.baseUrl + 'Processo/', 
       { IdProcesso: processId, UserId: localStorage.getItem('UserId'), nick: nick });
+  }
+
+  createProcess(processData: any,fileToUpload: File,comentario: string): Observable<any> {
+    let formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+    Object.keys(processData).forEach(key => formData.append(key, processData[key]));
+    formData.append('comentario', comentario);
+
+    return this.http.post<any>(this.baseUrl + 'Processo/Add',formData );
   }
 
   getProcess(userId: string): Observable<any> {

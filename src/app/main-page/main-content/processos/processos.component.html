@@ -61,7 +61,7 @@
       </button>
     </div>
     <div class="modal-body">
-      <form [formGroup]="processForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="processFormMaster" (ngSubmit)="onSubmit()">
 
         <div class="form-group">
           <label for="lastName">Numero do Processo:</label>
@@ -117,6 +117,8 @@
           aria-controls="movimento">Mostrar Movimento</a>
         <a class="btn btn-success" data-toggle="collapse" href="#historico" role="button" aria-expanded="false"
           aria-controls="historico">Mostrar Historico</a>
+        <a class="btn btn-warning" data-toggle="collapse" href="#comitar" role="button" aria-expanded="false"
+          aria-controls="historico">Alterar Processo</a>
         <div class="collapse" id="movimento">
           <div *ngIf="showMovimentos" class="card card-body">
             <tr *ngFor="let proc of movimento; index as i;">
@@ -131,6 +133,21 @@
               <th scope="row">DADOS DO PROCESSO </th>
               <td>DADOS DO PROCESSO</td>
             </tr>
+          </div>
+        </div>
+        <div class="collapse" id="comitar">
+          <div *ngIf="showMovimentos" class="card card-body">
+            <form [formGroup]="processForm"  (ngSubmit)="onSubmitProc()">
+              <div class="form-group">
+                <label>Comentario</label>
+                <textarea formControlName="comentario" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <label>Adicionar Arquivos</label>
+                <input formControlName="file"  (change)="handleFileInput($event.target.files)" type="file" class="form-control-file" id="exampleFormControlFile1">
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
           </div>
         </div>
       </tbody>

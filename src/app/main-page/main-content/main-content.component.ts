@@ -13,6 +13,7 @@ export class MainContentComponent implements OnInit {
   public page3: boolean = true;
 
   @Input() escritorioDataInput;
+  @Input() userData;
 
   constructor( ) { 
     this.page2 = true;
