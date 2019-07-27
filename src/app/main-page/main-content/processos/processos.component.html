@@ -13,10 +13,10 @@
               (click)="openModalProcess(templateProc,proc)">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">Processo No {{proc?.numero}}</h5>
-                <small>{{proc.processoMaster.updatedDay}}</small>
+                <small>{{proc.updatedDay}}</small>
               </div>
-              <p class="mb-1">{{proc.processoMaster.assunto}}</p>
-              <small>Comarca : {{proc.processoMaster.comarca}}</small>
+              <p class="mb-1">{{proc.assunto}}</p>
+              <small>Comarca : {{proc.comarca}}</small>
             </a>
           </div>
         </div>
@@ -37,10 +37,10 @@
               (click)="openModalProcess(templateProc,proc)">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">No {{proc.numero}}</h5>
-                <small>{{proc.processoMaster.updatedDay}}</small>
+                <small>{{proc.updatedDay}}</small>
               </div>
-              <p class="mb-1">{{proc.processoMaster.assunto}}</p>
-              <small>Comarca : {{proc.processoMaster.comarca}}</small>
+              <p class="mb-1">{{proc.assunto}}</p>
+              <small>Comarca : {{proc.comarca}}</small>
             </a>
           </div>
         </div>
@@ -113,12 +113,16 @@
             <td>{{proc.info}}</td>
           </tr>
         </div>
+
+        <!-- Toogles -->
         <a class="btn btn-primary" data-toggle="collapse" href="#movimento" role="button" aria-expanded="false"
           aria-controls="movimento">Mostrar Movimento</a>
         <a class="btn btn-success" data-toggle="collapse" href="#historico" role="button" aria-expanded="false"
           aria-controls="historico">Mostrar Historico</a>
         <a class="btn btn-warning" data-toggle="collapse" href="#comitar" role="button" aria-expanded="false"
           aria-controls="historico">Alterar Processo</a>
+
+        <!-- Mostrar Movimento   -->
         <div class="collapse" id="movimento">
           <div *ngIf="showMovimentos" class="card card-body">
             <tr *ngFor="let proc of movimento; index as i;">
@@ -127,24 +131,30 @@
             </tr>
           </div>
         </div>
+
+        <!-- Mostrar Historico -->
         <div class="collapse" id="historico">
           <div *ngIf="showMovimentos" class="card card-body">
-            <tr>
-              <th scope="row">DADOS DO PROCESSO </th>
-              <td>DADOS DO PROCESSO</td>
+            <tr *ngFor="let proc of allProcess; index as i;">
+              <th scope="row">{{proc.comentario.comentarioData}} </th>
+              <td>{{proc.comentario.file}}</td>
             </tr>
           </div>
         </div>
+
+        <!-- Alterar Processo -->
         <div class="collapse" id="comitar">
           <div *ngIf="showMovimentos" class="card card-body">
-            <form [formGroup]="processForm"  (ngSubmit)="onSubmitProc()">
+            <form [formGroup]="processForm" (ngSubmit)="onSubmitProc()">
               <div class="form-group">
                 <label>Comentario</label>
-                <textarea formControlName="comentario" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea formControlName="comentario" class="form-control" id="exampleFormControlTextarea1"
+                  rows="3"></textarea>
               </div>
               <div class="form-group">
                 <label>Adicionar Arquivos</label>
-                <input formControlName="file"  (change)="handleFileInput($event.target.files)" type="file" class="form-control-file" id="exampleFormControlFile1">
+                <input formControlName="file" (change)="handleFileInput($event.target.files)" type="file"
+                  class="form-control-file" id="exampleFormControlFile1">
               </div>
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>

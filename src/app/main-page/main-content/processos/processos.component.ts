@@ -28,6 +28,7 @@ export class ProcessosComponent implements OnInit {
   showMovimentos: boolean = true;
   fileToUpload: any;
   procMasterId: string = "";
+  allProcess: any[];
 
   constructor(private modalService: BsModalService,
     private formBuilder: FormBuilder, private processService: ProcessService) { }
@@ -68,6 +69,15 @@ export class ProcessosComponent implements OnInit {
   }
 
   callData(procData) {
+
+
+    this.processService.getAllProcess(procData.processoMasterId).subscribe(data => {
+      console.log(data)
+      this.allProcess = data;
+    }, err => {
+
+    });
+
     this.processService.getMovimentos(procData.processoMasterId).subscribe(
       value => {
         if (value) {
@@ -83,16 +93,16 @@ export class ProcessosComponent implements OnInit {
           });
           this.movimento = array;
           let procDetails = {
-            acao: procData.processoMaster.acao,
-            advogados: procData.processoMaster.advogados,
-            assunto: procData.processoMaster.assunto,
-            bairro: procData.processoMaster.bairro,
-            cidade: procData.processoMaster.cidade,
-            classe: procData.processoMaster.classe,
+            acao: procData.acao,
+            advogados: procData.advogados,
+            assunto: procData.assunto,
+            bairro: procData.bairro,
+            cidade: procData.cidade,
+            classe: procData.classe,
             comarca: procData.comarca,
-            dataDistribuicao: procData.processoMaster.dataDistribuicao,
-            dataVerificacao: procData.processoMaster.dataVerificacao,
-            endereco: procData.processoMaster.endereco,
+            dataDistribuicao: procData.dataDistribuicao,
+            dataVerificacao: procData.dataVerificacao,
+            endereco: procData.endereco,
           }
           let procArrayDetails = [];
           Object.keys(procDetails).forEach(function (key) {
@@ -135,8 +145,8 @@ export class ProcessosComponent implements OnInit {
     }
     debugger
     var data = {
-      processoMasterId : this.procMasterId,
       advogadoId : this.userData.advogadoId,
+      processoMasterId : this.procMasterId,
       escritorioID : this.userData.escritorio.escritorioId
     };
     this.processService.createProcess(data, this.fileToUpload, this.processForm.controls.comentario.value).subscribe(
