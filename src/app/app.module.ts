@@ -19,6 +19,8 @@ import { ModalModule, BsModalRef } from 'ngx-bootstrap';
 import { ProcessosComponent } from './main-page/main-content/processos/processos.component';
 import { EscritorioComponent } from './main-page/main-content/escritorio/escritorio.component';
 import { ProcessService } from './service/process.service';
+import { SanitizeHtmlDirective } from './util/sanitize-html.directive';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { ProcessService } from './service/process.service';
     FooterComponent,
     ProcessosComponent,
     EscritorioComponent,
+    SanitizeHtmlDirective
   ],
   imports: [
     BrowserModule,
