@@ -28,7 +28,10 @@ export class ProcessosComponent implements OnInit {
   showMovimentos: boolean = true;
   fileToUpload: any;
   procMasterId: string = "";
-  allProcess: any[];
+  listOfProcess: any[];
+  selectedProcess: any = null;
+  allComments: any[];
+  showComentarios: boolean = false;
 
   constructor(private modalService: BsModalService,
     private formBuilder: FormBuilder, private processService: ProcessService) { }
@@ -41,6 +44,7 @@ export class ProcessosComponent implements OnInit {
 
     this.processForm = this.formBuilder.group({
       comentario: ['', Validators.required],
+      nickComentario: ['', Validators.required],
       file: []
     });
 
@@ -52,7 +56,7 @@ export class ProcessosComponent implements OnInit {
   }
 
   getProcess() {
-    this.processService.getProcess(localStorage.getItem('UserId')).subscribe(
+    this.processService.getProcessAdvogado(localStorage.getItem('UserId')).subscribe(
       value => {
         this.processosAdvogado = value;
       },
@@ -69,13 +73,10 @@ export class ProcessosComponent implements OnInit {
   }
 
   callData(procData) {
-
-
     this.processService.getAllProcess(procData.processoMasterId).subscribe(data => {
-      console.log(data)
-      this.allProcess = data;
+      this.listOfProcess = data;
+      this.selectedProcess = data[0];
     }, err => {
-
     });
 
     this.processService.getMovimentos(procData.processoMasterId).subscribe(
@@ -119,37 +120,32 @@ export class ProcessosComponent implements OnInit {
     );
   }
 
-  closeModalProcess() {
-    this.erro = true;
-    this.modalRefProcss.hide();
-    this.getProcess();
-  }
+  showComentario(proc) {
+    this.showComentarios = !this.showComentarios;
+    this.processService.getAllComments(proc.processoId).subscribe(data => {
+      console.log(data)
+      this.allComments = data;
+    }, err => {
 
-  openModalProcess(template: TemplateRef<any>, procData) {
-    this.callData(procData)
-    this.modalRefProcss = this.modalService.show(template, { class: 'modal-lg', backdrop: 'static', keyboard: false });
+    });
   }
-
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, { backdrop: 'static', keyboard: false });
-  }
-
-  closeModal() {
-    this.modalRef.hide();
-    this.getProcess();
-  }
-
-  onSubmitProc() {
+  
+  //Enviar comentario
+  onSubmitProc() { 
     if (this.processForm.invalid) {
       return;
     }
-    debugger
     var data = {
-      advogadoId : this.userData.advogadoId,
-      processoMasterId : this.procMasterId,
-      escritorioID : this.userData.escritorio.escritorioId
+      advogadoId: this.userData.advogadoId,
+      processoMasterId: this.procMasterId,
+      processoid: this.selectedProcess? this.selectedProcess.processoId : null,
+      escritorioID: this.userData.escritorio.escritorioId
     };
-    this.processService.createProcess(data, this.fileToUpload, this.processForm.controls.comentario.value).subscribe(
+    this.processService.createProcess(data, 
+      this.fileToUpload, 
+      this.processForm.controls.comentario.value,
+      this.processForm.controls.nickComentario.value
+      ).subscribe(
       value => {
         this.sucesso = false;
       },
@@ -160,7 +156,8 @@ export class ProcessosComponent implements OnInit {
     );
   }
 
-  onSubmit() {
+  //Enviar ProcMaster
+  onSubmit() { 
     this.sucesso = true;
     this.erro = true;
 
@@ -179,4 +176,30 @@ export class ProcessosComponent implements OnInit {
     );
   }
 
+  //Modals
+  openModalProcess(template: TemplateRef<any>, procData) {
+    this.callData(procData)
+    this.modalRefProcss = this.modalService.show(template, { class: 'modal-lg', backdrop: 'static', keyboard: false });
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, { backdrop: 'static', keyboard: false });
+  }
+
+  closeModal() {
+    this.sucesso = false;
+    this.modalRef.hide();
+    this.getProcess();
+  }
+
+  closeModalProcess() {
+    this.erro = true;
+    this.modalRefProcss.hide();
+    this.getProcess();
+  }
+
+  selectChangeHandler (event: any) {
+    //update the ui
+    this.selectedProcess = event.target.value;
+  }
 }

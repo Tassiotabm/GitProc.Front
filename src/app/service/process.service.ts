@@ -21,17 +21,22 @@ export class ProcessService {
       { IdProcesso: processId, UserId: localStorage.getItem('UserId'), nick: nick });
   }
 
-  createProcess(processData: any,fileToUpload: File,comentario: string): Observable<any> {
+  createProcess(processData: any,fileToUpload: File,comentario: string, nick: string): Observable<any> {
     let formData = new FormData();
-    formData.append('file', fileToUpload, fileToUpload.name);
+    if(fileToUpload)
+      formData.append('file', fileToUpload, fileToUpload.name);
     Object.keys(processData).forEach(key => formData.append(key, processData[key]));
     formData.append('comentario', comentario);
-
+    formData.append('nick', nick);
     return this.http.post<any>(this.baseUrl + 'Processo/Add',formData );
   }
 
-  getProcess(userId: string): Observable<any> {
+  getProcessAdvogado(userId: string): Observable<any> {
     return this.http.get<any>(this.baseUrl + 'Processo/' +userId);
+  }
+
+  getAllComments(processId: string): Observable<any> {
+    return this.http.get<any>(this.baseUrl + 'Processo/Comentarios/' + processId);
   }
 
   getAllProcess(processMasterId: string): Observable<any> {
