@@ -3,6 +3,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProcessService } from 'src/app/service/process.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-processos',
@@ -12,6 +13,7 @@ import { ProcessService } from 'src/app/service/process.service';
 export class ProcessosComponent implements OnInit {
 
   @Input() userData: any;
+  @Input() sanitizeHtml: string;
 
   processosEscritorio: any[];
   processosAdvogado: any[];
@@ -34,7 +36,9 @@ export class ProcessosComponent implements OnInit {
   showComentarios: boolean = false;
 
   constructor(private modalService: BsModalService,
-    private formBuilder: FormBuilder, private processService: ProcessService) { }
+    private sanitizer: DomSanitizer,
+    private formBuilder: FormBuilder, 
+    private processService: ProcessService) { }
 
   ngOnInit() {
     this.processFormMaster = this.formBuilder.group({
@@ -120,11 +124,18 @@ export class ProcessosComponent implements OnInit {
     );
   }
 
+  goToLink(url: string){
+    window.open(url, "_blank");
+}
+
   showComentario(proc) {
     this.showComentarios = !this.showComentarios;
     this.processService.getAllComments(proc.processoId).subscribe(data => {
-      console.log(data)
       this.allComments = data;
+      this.allComments .forEach(element => {
+        var file = this.sanitizer.bypassSecurityTrustUrl(element.fileName);
+        element.download = file;
+      });
     }, err => {
 
     });

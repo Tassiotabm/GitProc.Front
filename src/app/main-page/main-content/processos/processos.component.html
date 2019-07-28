@@ -134,20 +134,23 @@
         <!-- Mostrar Historico -->
         <div class="collapse" id="historico">
           <div *ngIf="showMovimentos" class="card card-body" style=" display: inline-grid;">
-            <div class="card" style="width: 100%;">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item" *ngFor="let proc of listOfProcess; index as i;">
+            <div class="card bg-light" style="width: 100%;">
+              <ul class="list-group  bg-light list-group-flush">
+                <li class="list-group-item  bg-light" *ngFor="let proc of listOfProcess; index as i;">
                   <p> Nome do processo {{proc.nick}}</p>
                   <p> Criador: {{proc.advogado.name}}</p>
                   <p> Data: {{proc.dataAdicionado}}</p>
                   <button class="btn btn-link" (click)="showComentario(proc)">
-                    Mostrar Comentarios
+                    <p *ngIf="!showComentarios">Mostrar Comentarios</p>
+                    <p *ngIf="showComentarios">Esconder Comentarios</p>              
                   </button>
-                  <div *ngIf="showComentarios" class=""> 
-                    <div class="card-body" *ngFor="let proc of allComments; index as i;">
-                      <p>Advogado: {{proc.advogado.name}}</p>
-                      <p>Comentario: {{proc.comentarioData}}</p>
-                      <p>Path do arquivo: {{proc.fileName}}</p>
+                  <div *ngIf="showComentarios" class="">
+                    <div class="card" *ngFor="let proc of allComments; index as i;" style="width: 100%;">
+                      <div class="card-body bg-dark text-white" >
+                        <p>Advogado: {{proc.advogado.name}}</p>
+                        <p>Comentario: {{proc.comentarioData}}</p>
+                        <p *ngIf="proc.fileName !== null " >Path do arquivo: <a (click)="goToLink(proc.fileName)" [href]="proc.download">{{proc.fileName}}</a></p>
+                      </div>
                     </div>
                   </div>
                 </li>
